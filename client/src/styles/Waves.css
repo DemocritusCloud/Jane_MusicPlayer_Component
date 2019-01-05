@@ -1,49 +1,54 @@
 .BarWrapper {
   display: flex;
   transform: rotateX(180deg);
-  position: relative;
 }
 
-.BarWrapper:not(:last-child):hover * {
+.BarWrapper:hover > * {
   cursor: pointer;
   background: white;
+}
+
+.AnimatedBar {
+  width: 3px;
+  border-right: 1px solid grey;
+  margin-top: 1.3px;
+  animation-name: orangeWave;
+  animation-timing-function: linear;
+}
+
+@keyframes orangeWave {
+  0% {
+    background: rgb(186, 184, 184);
+  }
+  100% {
+    background: #ff3500;
+  }
+}
+
+.Bar {
+  width: 3px;
+  background: rgb(213, 211, 211);
+  border-right: 1px solid grey; /*og border 0.1px */
+  margin-top: 1.3px;
 }
 
 .MirrorWrapper {
   display: flex;
 }
 
-/* .MirrorWrapper:hover {
+.MirrorWrapper:hover {
   cursor: pointer;
-} */
-
-.Bar {
-  width: 3px;
-  background: rgb(216, 215, 215);
-  border-right: 0.1px solid grey;
-  margin-top: 1.3px;
-}
-
-@keyframes colorChange {
-  0% {
-      background: orange;    
-  }
 }
 
 .Mirror {
   width: 3px;
   background: rgb(186, 184, 184);
-  border-right: 0.1px solid grey;
+  border-right: 1px solid grey;
 }
 
-.Duration {
-  transform: rotateX(180deg);
-  /* align-self: flex-start; */
-  background-color: rgba(0, 0, 0, 0.8);
-  color: rgb(204, 204, 204);
-  cursor: pointer;
-  font-family: "Interstate", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Garuda", "Verdana", "Tahoma, sans-serif"; 
-  font-size: 12px;
-  position: absolute;
-  z-index: 1;
+.AnimatedMirror {
+  width: 3px;
+  border-right: 1px solid grey;
+  animation-name: orangeWave;
+  animation-timing-function: linear;
 }
