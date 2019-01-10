@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 
-const db = new Sequelize('soundcloud', 'root', '', {
+const db = new Sequelize('soundcloud', 'user1', 'hallinthewall', {
   host: 'localhost',
-  dialect: 'mysql',
+  dialect: 'postgres',
 });
 
 db.authenticate()
@@ -27,7 +27,7 @@ const songs = db.define(
 );
 
 db.sync()
-  .then(() => { console.log('synced with mysql database'); })
+  .then(() => { console.log('synced with postgres database'); })
   .catch((error) => { console.error(error); });
 
 module.exports = { db, songs };
