@@ -21,7 +21,7 @@ const waveGenerator = () => {
 };
 
 // create an entry for each item in the db
-for (let i = 0; i <= 100; i += 1) {
+for (let i = 0; i <= 10000; i += 1) {
   db.songs.create({
     title: faker.lorem.word(),
     artist: faker.name.findName(),
