@@ -1,6 +1,6 @@
 
  \connect soundcloud;
- CREATE SCHEMA IF NOT EXISTS testSong AUTHORIZATION user1;
+ CREATE SCHEMA IF NOT EXISTS testSong AUTHORIZATION andrei;
     CREATE TABLE songs (
         id serial,
         album text, 
