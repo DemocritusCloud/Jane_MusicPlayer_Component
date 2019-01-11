@@ -7,7 +7,8 @@
     "react": "webpack -d --watch",
     "server": "nodemon server/index.js",
     "db-schema": "psql soundcloud < schema.sql",
-    "db": "node database/seed.js"
+    "faker": "node database/seed.js",
+    "db": "node database/index.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "nodemon": "^1.18.9",
     "path": "^0.12.7",
     "pg": "^7.7.1",
+    "pg-promise": "^8.5.4",
     "react": "^16.7.0",
     "react-css-modules": "^4.7.8",
     "react-dom": "^16.7.0",
