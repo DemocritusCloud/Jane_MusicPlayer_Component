@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
+// const path = require('path');
 const db = require('../database/index');
 
 const server = express();
@@ -13,12 +13,22 @@ server.use(/\/\d+\//, express.static('./client/dist/'));
 
 server.listen(8000, () => { console.log('listening to port 8000'); });
 
-// GET request to fetch a new song data from db
+//GET request to fetch a new song data from db
 server.get('/api/jane/player/:id', (req, res) => {
   const { id } = req.params;
-  db.songs.findByPk(id)
+  db.query('SELECT * FROM songs WHERE id = $1', id)
+  // db.songs.findByPk(id)
     .then((data) => { res.send(data).status(200); })
     .catch((error) => { res.send(error).status(500); });
 });
 
 module.exports = server;
+
+
+// const obj = {
+//   one: 1,
+//   two: 2
+// };
+// db.query('SELECT $1:name FROM $2:name', [obj, 'table']);
+// //=> SELECT "one","two" FROM "table"
+
