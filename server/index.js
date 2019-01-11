@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 // const path = require('path');
-const db = require('../database/index');
+const db = require('../database/postgresql');
 
 const server = express();
 server.use(bodyParser.json());
@@ -24,11 +24,4 @@ server.get('/api/jane/player/:id', (req, res) => {
 
 module.exports = server;
 
-
-// const obj = {
-//   one: 1,
-//   two: 2
-// };
-// db.query('SELECT $1:name FROM $2:name', [obj, 'table']);
-// //=> SELECT "one","two" FROM "table"
 

@@ -7,8 +7,8 @@
     "react": "webpack -d --watch",
     "server": "nodemon server/index.js",
     "db-schema": "psql soundcloud < schema.sql",
-    "faker": "node database/seed.js",
-    "db": "node database/index.js"
+    "faker": "node database/faker.js",
+    "db": "node database/seedPostgres.js"
   },
   "repository": {
     "type": "git",
