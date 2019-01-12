@@ -7,6 +7,16 @@ import TimeAgo from 'react-timeago';
 
 var audio;
 
+ // create a function to generate random wave data in string form, later to be split into an array
+const waveGenerator = () => {
+  let waves = '';
+  for (let i = 0; i <= 240; i += 1) {
+    const wave = Math.floor((Math.random() + 1) * 35);
+    waves += `${wave},`;
+  }
+  return waves;
+};
+
 class MusicPlayer extends React.Component {
   constructor(props) {
     super(props);
@@ -14,7 +24,7 @@ class MusicPlayer extends React.Component {
       'play': false,
       'playerIcon': 'https://s3-us-west-1.amazonaws.com/democrituscloud/play.png',
       'album': '',
-      'artist': '',
+      'artist': 'Andrei',
       'duration': 0,
       'currentTime': 0,
       'id': 61,
@@ -29,6 +39,10 @@ class MusicPlayer extends React.Component {
     this.fetchSong = this.fetchSong.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
     this.skipToSegment = this.skipToSegment.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchSong();
   }
 
   calculateTime(length) {
@@ -58,30 +72,27 @@ class MusicPlayer extends React.Component {
 
     axios.get(`/api/jane/player/${id}`)
     .then((response) => { 
-      audio = new Audio(response.data['song_url']);
+      audio = new Audio(response.data[0]['song_url']);
       audio.addEventListener('loadedmetadata', () => {
         this.setState({
           duration: audio.duration + 1
         });
       });
+      console.log(response.data)
       this.setState({
-        album: response.data.album,
-        artist: response.data.artist,
-        id: response.data.id,
-        image: response.data.image,
-        released: response.data.released,
+        album: response.data[0].album,
+        artist: response.data[0].artist,
+        id: response.data[0].id,
+        image: response.data[0].image,
+        released: response.data[0].released,
         song: audio,
-        title: response.data.title,
-        wave: response.data.wave.split(',')
+        title: response.data[0].title,
+        wave: waveGenerator().split(',')
       });
     })
     .catch((error) => {
       console.log(error)
     });
-  }
-
-  componentDidMount() {
-    this.fetchSong();
   }
 
   clickHandler(event) {
